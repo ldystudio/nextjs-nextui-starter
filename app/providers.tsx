@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 
 import { animate, DOMKeyframesDefinition, DynamicAnimationOptions } from "framer-motion"
 import _ from "lodash"
-import { ThemeProvider as NextThemesProvider, ThemeProviderProps } from "next-themes"
+import { ThemeProvider as NextThemesProvider } from "next-themes"
 import { TransitionRouter } from "next-transition-router"
 import { NextUIProvider } from "@nextui-org/react"
 
@@ -13,16 +13,17 @@ import { MediaContextProvider } from "@/components/media"
 
 export interface ProvidersProps {
     children: React.ReactNode
-    themeProps?: ThemeProviderProps
 }
 
-export function Providers({ children, themeProps }: ProvidersProps) {
+export function Providers({ children }: ProvidersProps) {
     const router = useRouter()
 
     return (
         <MediaContextProvider>
-            <NextUIProvider navigate={router.push}>
-                <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
+            <NextUIProvider navigate={router.push} locale='zh-CN'>
+                <NextThemesProvider attribute='class' defaultTheme='system' enableSystem={true}>
+                    {children}
+                </NextThemesProvider>
             </NextUIProvider>
         </MediaContextProvider>
     )

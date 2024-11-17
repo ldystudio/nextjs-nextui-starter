@@ -10,6 +10,9 @@ import { PageTransition, Providers } from "./providers"
 
 import "~/styles/globals.css"
 
+import NextTopLoader from "nextjs-toploader"
+import { Toaster } from "react-hot-toast"
+
 export const metadata: Metadata = {
     title: {
         default: siteConfig.name,
@@ -38,7 +41,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     fontSans.variable
                 )}
             >
-                <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+                <Providers>
+                    <NextTopLoader color='#006FEE' zIndex={9999} showSpinner={false} />
+                    <Toaster />
                     <div className='relative flex h-screen flex-col'>
                         <Navbar />
                         <PageTransition className='container mx-auto max-w-7xl flex-grow px-6 pt-16'>
