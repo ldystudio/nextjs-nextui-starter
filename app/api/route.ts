@@ -1,7 +1,7 @@
 import { splash_config } from "@/app/api/splash_config"
 
 export async function GET() {
-    const data = await JSON.parse(splash_config)
+    const data = splash_config
 
     return Response.json({ data })
 }

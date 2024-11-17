@@ -1,6 +1,6 @@
 /** @type {import("@ianvs/prettier-plugin-sort-imports").PrettierConfig} */
 module.exports = {
-    printWidth: 88,
+    printWidth: 100,
     trailingComma: "none",
     semi: false,
     jsxSingleQuote: true,
@@ -9,6 +9,7 @@ module.exports = {
     importOrder: [
         "^(react$)|^(react/(.*)$)",
         "^(next$)|^(next/(.*)$)",
+        "",
         "<BUILTIN_MODULES>",
         "<TYPES>",
         "<TYPES>^[.]",
@@ -18,9 +19,14 @@ module.exports = {
         "^[@/]",
         "^[~/]",
         "^[./]",
+        "",
+        "^[#/]",
+        "",
         "\\.(scss|less|css)$"
     ],
     importOrderParserPlugins: ["typescript", "jsx", "decorators-legacy"],
     importOrderTypeScriptVersion: "5.0.0",
-    plugins: ["@ianvs/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"]
+    plugins: ["@ianvs/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"],
+    tailwindFunctions: ["classnames", "cn", "clsx", "tv", "twc", "twx"],
+    tailwindAttributes: ["className"]
 }

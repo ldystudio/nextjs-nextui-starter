@@ -32,7 +32,7 @@ module.exports = {
     settings: {
         react: { version: "detect" },
         tailwindcss: {
-            callees: ["classnames", "cn", "clsx", "tv", "twx"],
+            callees: ["classnames", "cn", "clsx", "tv", "twc", "twx"],
             config: "tailwind.config.js"
         }
     },

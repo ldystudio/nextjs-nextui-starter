@@ -1,6 +1,7 @@
 "use client"
 
 import { FC } from "react"
+
 import clsx from "clsx"
 import { useTheme } from "next-themes"
 import { SwitchProps, useSwitch } from "@nextui-org/react"
@@ -22,24 +23,18 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({ className, classNames }) => 
         theme === "light" ? setTheme("dark") : setTheme("light")
     }
 
-    const {
-        Component,
-        slots,
-        isSelected,
-        getBaseProps,
-        getInputProps,
-        getWrapperProps
-    } = useSwitch({
-        isSelected: theme === "light" || isSSR,
-        "aria-label": `Switch to ${theme === "light" || isSSR ? "dark" : "light"} mode`,
-        onChange
-    })
+    const { Component, slots, isSelected, getBaseProps, getInputProps, getWrapperProps } =
+        useSwitch({
+            isSelected: theme === "light" || isSSR,
+            "aria-label": `Switch to ${theme === "light" || isSSR ? "dark" : "light"} mode`,
+            onChange
+        })
 
     return (
         <Component
             {...getBaseProps({
                 className: clsx(
-                    "px-px transition-opacity hover:opacity-80 cursor-pointer",
+                    "cursor-pointer px-px transition-opacity hover:opacity-80",
                     className,
                     classNames?.base
                 )
@@ -67,11 +62,7 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({ className, classNames }) => 
                     )
                 })}
             >
-                {!isSelected || isSSR ? (
-                    <SunFilledIcon size={22} />
-                ) : (
-                    <MoonFilledIcon size={22} />
-                )}
+                {!isSelected || isSSR ? <SunFilledIcon size={22} /> : <MoonFilledIcon size={22} />}
             </div>
         </Component>
     )

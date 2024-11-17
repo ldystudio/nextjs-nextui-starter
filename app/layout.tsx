@@ -1,11 +1,12 @@
 import { Metadata, Viewport } from "next"
+
 import clsx from "clsx"
-import { Link } from "@nextui-org/react"
+import { Link } from "@nextui-org/link"
 
 import { Navbar } from "@/components/navbar"
 import { fontSans } from "~/config/fonts"
 import { siteConfig } from "~/config/site"
-import { Providers } from "./providers"
+import { PageTransition, Providers } from "./providers"
 
 import "~/styles/globals.css"
 
@@ -40,9 +41,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
                     <div className='relative flex h-screen flex-col'>
                         <Navbar />
-                        <main className='container mx-auto max-w-7xl grow px-6 pt-16'>
+                        <PageTransition className='container mx-auto max-w-7xl flex-grow px-6 pt-16'>
                             {children}
-                        </main>
+                        </PageTransition>
                         <footer className='flex w-full items-center justify-center py-3'>
                             <Link
                                 isExternal
