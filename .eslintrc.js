@@ -1,53 +1,47 @@
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
-    $schema: "https://json.schemastore.org/eslintrc.json",
+    $schema: "https://json.schemastore.org/eslintrc",
+    root: true,
     env: {
-        browser: false,
+        browser: true,
         es2021: true,
         node: true
     },
+    plugins: ["unused-imports", "@typescript-eslint", "jsx-a11y", "tailwindcss", "@tanstack/query"],
     extends: [
-        "next/core-web-vitals",
         "plugin:react/recommended",
-        "plugin:prettier/recommended",
         "plugin:react-hooks/recommended",
-        "plugin:jsx-a11y/recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:tailwindcss/recommended"
-    ],
-    plugins: [
-        "react",
-        "unused-imports",
-        "@typescript-eslint",
-        "jsx-a11y",
-        "prettier",
-        "tailwindcss"
+        "next/core-web-vitals",
+        "airbnb",
+        "airbnb-typescript",
+        "plugin:sonarjs/recommended",
+        "prettier"
     ],
     parser: "@typescript-eslint/parser",
     parserOptions: {
-        ecmaFeatures: { jsx: true },
-        ecmaVersion: 12,
-        sourceType: "module"
+        ecmaVersion: 2021,
+        sourceType: "module",
+        project: "./tsconfig.json"
     },
     settings: {
-        react: { version: "detect" },
+        react: {
+            version: "detect"
+        },
         tailwindcss: {
             callees: ["classnames", "cn", "clsx", "tv", "twc", "twx"],
             config: "tailwind.config.js"
+        },
+        "import/resolver": {
+            typescript: {}
+        },
+        "import/parsers": {
+            "@typescript-eslint/parser": [".js", ".jsx", ".ts", ".tsx"]
         }
     },
+    ignorePatterns: ["node_modules/", ".next/", "components/ui"],
     rules: {
         "no-console": "warn",
-        "react/prop-types": "off",
-        "react/jsx-uses-react": "off",
         "react/react-in-jsx-scope": "off",
-        "react-hooks/exhaustive-deps": "off",
-        "jsx-a11y/click-events-have-key-events": "warn",
-        "jsx-a11y/interactive-supports-focus": "warn",
-        "prettier/prettier": "warn",
-        "no-unused-vars": "off",
-        "unused-imports/no-unused-vars": "off",
-        "unused-imports/no-unused-imports": "warn",
         "@typescript-eslint/no-unused-vars": [
             "warn",
             {
@@ -56,16 +50,8 @@ module.exports = {
                 argsIgnorePattern: "^_.*?$"
             }
         ],
-        "react/self-closing-comp": "warn",
-        "react/jsx-sort-props": [
-            "warn",
-            {
-                callbacksLast: true,
-                shorthandFirst: true,
-                noSortAlphabetically: false,
-                reservedFirst: true
-            }
-        ],
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-var-requires": "warn",
         "padding-line-between-statements": [
             "warn",
             { blankLine: "always", prev: "*", next: "return" },
@@ -76,12 +62,5 @@ module.exports = {
                 next: ["const", "let", "var"]
             }
         ]
-    },
-    overrides: [
-        {
-            files: ["*.ts", "*.js", "*.tsx", "*.jsx"],
-            parser: "@typescript-eslint/parser"
-        }
-    ],
-    ignorePatterns: ["node_modules/", ".next/"]
+    }
 }

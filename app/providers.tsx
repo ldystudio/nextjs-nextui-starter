@@ -7,6 +7,7 @@ import { animate, DOMKeyframesDefinition, DynamicAnimationOptions } from "framer
 import _ from "lodash"
 import { ThemeProvider as NextThemesProvider } from "next-themes"
 import { TransitionRouter } from "next-transition-router"
+import { NuqsAdapter } from "nuqs/adapters/next/app"
 import { NextUIProvider } from "@nextui-org/react"
 
 import { MediaContextProvider } from "@/components/media"
@@ -22,7 +23,7 @@ export function Providers({ children }: ProvidersProps) {
         <MediaContextProvider>
             <NextUIProvider navigate={router.push} locale='zh-CN'>
                 <NextThemesProvider attribute='class' defaultTheme='system' enableSystem={true}>
-                    {children}
+                    <NuqsAdapter>{children}</NuqsAdapter>
                 </NextThemesProvider>
             </NextUIProvider>
         </MediaContextProvider>
